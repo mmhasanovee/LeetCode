@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/string-to-integer-atoi
+class Solution {
+    public int myAtoi(String s) {
+       char[] l = s.trim().toCharArray();
+        if (l.length == 0) return 0;
+        long num = 0;
+        int idx = l[0] == '-' || l[0] == '+' ? 1 : 0;
+        while (idx < l.length && Character.isDigit(l[idx]) && num < Integer.MAX_VALUE) {
+            num = num * 10 + (l[idx++] - '0');
+        }
+        
+        if (l[0] == '-') {
+            num = -num;
+            if (num < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+        } else {
+            if (num > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+        }
+        return (int) num;
+    }
+}
